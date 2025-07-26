@@ -1,18 +1,18 @@
-<!doctype html>
+<!doctype html>     <!--Не понимаю-->
 <html lang="ru">
 <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8">      <!--Не понимаю-->
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, inital=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+          content="width=device-width, user-scalable=no, inital=1.0, maximum-scale=1.0, minimum-scale=1.0">     <!--Не понимаю-->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">       <!--Не понимаю-->
     <title>Shop</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap')
 
-        * {
+        * {                             <!--Не понимаю-->
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box;     <!--Не понимаю-->
         }
 
         body {
@@ -20,9 +20,10 @@
             font-weight: 200;
             color: var(--tg-theme-text-color);
             background: var(--tg-theme-bg-color);
+            background-color: #7dc9c1;
         }
 
-        #main {
+        #main {                             <!--Не понимаю-->
             width: 100%;
             padding: 20px;
             text-align: center;
@@ -31,6 +32,7 @@
         h1 {
             margin-top: 50px;
             margin-bottom: 10px;
+            color: #27236b;
         }
 
         img {
@@ -41,6 +43,7 @@
         p {
             width: 350px;
             margin: 0px auto;
+            font-size: 20px;
         }
 
         button {
@@ -51,24 +54,24 @@
             width: 200px;
             font-size: 20px;
             font-weight: 500;
-            cursor: pointed;
-            transition: all 500ms ease;
+            cursor: pointed;                            <!--Не понимаю-->
+            transition: all 500ms ease;                 <!--Не понимаю-->
             color: var(--tg-theme-button-color);
             background: var(--tg-theme-button-text-color);
         }
 
-        button:hover {
+        button:hover {                                                  <!--Не понимаю-->
             background: var(--tg-theme-secondary-bg-color);
         }
 
-        #form {
+        #form {                                                         <!--Не понимаю-->
             display: none;
             text-align: center;
         }
 
-        input {
+        input {                                                         <!--Не понимаю-->
             width: 90%;
-            outline: none;
+            outline: none;                                              <!--Не понимаю-->
             margin: 10px 5%;
             padding: 15px 10px;
             font-size: 14px;
@@ -76,7 +79,7 @@
             border-radius: 5px;
         }
 
-        input:focus {
+        input:focus {                                                   <!--Не понимаю-->
             border-color: #db5d5d;
         }
     </style>
@@ -85,13 +88,26 @@
     <div id="main">
         <h1>Онлайн магазин</h1>
         <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png">
-        <p>Lorem ipsum dolor sit amet</p>
+<!--        <p>Lorem ipsum dolor sit amet</p>-->
+        <ul id="product-list">
+            <li>Товар A - 100₽</li>
+            <li>Товар B - 200₽</li>
+            <li>Товар C - 300₽</li>
+        </ul>
+        <label for="product_select">Ваш товар</label>
+        <select name="product" id="product_select">
+            <option selected disabled>--Выберите товар--</option>
+            <option value="A">Товар A</option>
+            <option value="B">Товар B</option>
+            <option value="C">Товар C</option>
+        </select>
         <button id="buy">Купить</button>
     </div>
     <form id="form">
-        <input type="text" placeholder="Имя" id="user_name">
-        <input type="text" placeholder="Email" id="user_email">
-        <input type="text" placeholder="Телефон" id="user_phone">
+        <input type="text" placeholder="Имя" id="user_name">                <!--Не понимаю-->
+        <input type="text" placeholder="Email" id="user_email">             <!--Не понимаю-->
+        <input type="text" placeholder="Телефон" id="user_phone">           <!--Не понимаю-->
+        <input type="text" placeholder="Город" id="user_city">
         <div id="error"></div>
         <button id="order">Оформить</button>
     </form>
@@ -113,6 +129,12 @@
             let name = document.getElementById("user_name").value;
             let email = document.getElementById("user_email").value;
             let phone = document.getElementById("user_phone").value;
+            let city = document.getElementById("user_city").value;
+            let product = document.getElementById("product_select").value;
+            let price = 0
+            if (product == "A") price = 100;
+            else if (product == "B") price = 200;
+            else if (product == "C") price = 300;
             if (name.length < 5) {
                 document.getElementById("error").innerText = "Ошибка в имени";
                 return;
@@ -121,15 +143,23 @@
                 document.getElementById("error").innerText = "Ошибка в email";
                 return;
             }
-            if (phone.length < 5) {
+            let phoneValid = /^(\+7|8)\d{10}$/.test(phone)
+            if (!phoneValid) {
                 document.getElementById("error").innerText = "Ошибка в номере телефона";
+                return;
+            }
+            if (city.length < 3) {
+                document.getElementById("error").innerText = "Ошибка в городе";
                 return;
             }
 
             let data = {
                 name: name,
                 email: email,
-                phone: phone
+                phone: phone,
+                city: city,
+                product: product,
+                price: price
             }
             tg.sendData(JSON.stringify(data));
 
