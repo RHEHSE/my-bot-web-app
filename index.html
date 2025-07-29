@@ -1,18 +1,18 @@
-<!doctype html>     
+<!doctype html>
 <html lang="ru">
 <head>
-    <meta charset="utf-8">      
+    <meta charset="utf-8">
     <meta name="viewport"
-          content="width=device-width, user-scalable=no, inital=1.0, maximum-scale=1.0, minimum-scale=1.0">     
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">       
+          content="width=device-width, user-scalable=no, inital=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Shop</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap')
 
-        * {                             
+        * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;     
+            box-sizing: border-box;
         }
 
         body {
@@ -23,7 +23,7 @@
             background-color: #7dc9c1;
         }
 
-        #main {                             
+        #main {
             width: 100%;
             padding: 20px;
             text-align: center;
@@ -54,24 +54,24 @@
             width: 200px;
             font-size: 20px;
             font-weight: 500;
-            cursor: pointed;                            
-            transition: all 500ms ease;                 
+            cursor: pointed;
+            transition: all 500ms ease;
             color: var(--tg-theme-button-color);
             background: var(--tg-theme-button-text-color);
         }
 
-        button:hover {                                                  
+        button:hover {
             background: var(--tg-theme-secondary-bg-color);
         }
 
-        #form {                                                         
+        #form {
             display: none;
             text-align: center;
         }
 
-        input {                                                         
+        input {
             width: 90%;
-            outline: none;                                              
+            outline: none;
             margin: 10px 5%;
             padding: 15px 10px;
             font-size: 14px;
@@ -79,7 +79,7 @@
             border-radius: 5px;
         }
 
-        input:focus {                                                   
+        input:focus {
             border-color: #db5d5d;
         }
     </style>
@@ -90,23 +90,23 @@
         <img src="https://cdn-icons-png.flaticon.com/512/3132/3132693.png">
 <!--        <p>Lorem ipsum dolor sit amet</p>-->
         <ul id="product-list">
-            <li>Товар A - 100₽</li>
-            <li>Товар B - 200₽</li>
-            <li>Товар C - 300₽</li>
+            <li>Пицца - 5$</li>
+            <li>Бургер - 3,4$</li>
+            <li>Напиток - 1,7$</li>
         </ul>
         <label for="product_select">Ваш товар</label>
         <select name="product" id="product_select">
             <option selected disabled>--Выберите товар--</option>
-            <option value="A">Товар A</option>
-            <option value="B">Товар B</option>
-            <option value="C">Товар C</option>
+            <option value="pizza">Пицца</option>
+            <option value="burger">Бургер</option>
+            <option value="drink">Напиток</option>
         </select>
         <button id="buy">Купить</button>
     </div>
     <form id="form">
-        <input type="text" placeholder="Имя" id="user_name">                
-        <input type="text" placeholder="Email" id="user_email">             
-        <input type="text" placeholder="Телефон" id="user_phone">           
+        <input type="text" placeholder="Имя" id="user_name">
+        <input type="text" placeholder="Email" id="user_email">
+        <input type="text" placeholder="Телефон" id="user_phone">
         <input type="text" placeholder="Город" id="user_city">
         <div id="error"></div>
         <button id="order">Оформить</button>
@@ -132,9 +132,9 @@
             let city = document.getElementById("user_city").value;
             let product = document.getElementById("product_select").value;
             let price = 0
-            if (product == "A") price = 100;
-            else if (product == "B") price = 200;
-            else if (product == "C") price = 300;
+            if (product == "pizza") price = 5;
+            else if (product == "burger") price = 3.4;
+            else if (product == "drink") price = 1.7;
             if (name.length < 5) {
                 document.getElementById("error").innerText = "Ошибка в имени";
                 return;
